@@ -1,6 +1,30 @@
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 
 function Analytics() {
+  const [analytics, setAnalytics] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchAnalytics();
+  }, []);
+
+  const fetchAnalytics = async () => {
+    try {
+      const response = await fetch(
+        "http://127.0.0.1:8000/analytics"
+      );
+
+      const data = await response.json();
+
+      setAnalytics(data);
+      setLoading(false);
+    } catch (error) {
+      console.error(error);
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex min-h-screen bg-slate-950 text-white">
       <Sidebar />
@@ -10,49 +34,73 @@ function Analytics() {
           Analytics Dashboard
         </h1>
 
-        <div className="grid md:grid-cols-4 gap-6">
+        {loading ? (
+          <p>Loading Analytics...</p>
+        ) : (
+          <div className="grid md:grid-cols-3 gap-6">
 
-          <div className="bg-slate-900 p-6 rounded-xl">
-            <h2 className="text-lg font-semibold">
-              Total Resumes
-            </h2>
+            <div className="bg-slate-900 p-6 rounded-xl">
+              <h2 className="text-lg font-semibold">
+                Skills Detected
+              </h2>
 
-            <p className="text-3xl mt-4 text-blue-500">
-              120
-            </p>
+              <p className="text-3xl mt-4 text-blue-500">
+                {analytics.skills_detected}
+              </p>
+            </div>
+
+            <div className="bg-slate-900 p-6 rounded-xl">
+              <h2 className="text-lg font-semibold">
+                Recommended Career
+              </h2>
+
+              <p className="text-2xl mt-4 text-green-500">
+                {analytics.recommended_career}
+              </p>
+            </div>
+
+            <div className="bg-slate-900 p-6 rounded-xl">
+              <h2 className="text-lg font-semibold">
+                Match Score
+              </h2>
+
+              <p className="text-3xl mt-4 text-yellow-500">
+                {analytics.match_score}%
+              </p>
+            </div>
+
+            <div className="bg-slate-900 p-6 rounded-xl">
+              <h2 className="text-lg font-semibold">
+                Missing Skills
+              </h2>
+
+              <p className="text-3xl mt-4 text-red-500">
+                {analytics.missing_skills}
+              </p>
+            </div>
+
+            <div className="bg-slate-900 p-6 rounded-xl">
+              <h2 className="text-lg font-semibold">
+                Jobs Matched
+              </h2>
+
+              <p className="text-3xl mt-4 text-green-500">
+                {analytics.jobs_matched}
+              </p>
+            </div>
+
+            <div className="bg-slate-900 p-6 rounded-xl">
+              <h2 className="text-lg font-semibold">
+                Interview Questions
+              </h2>
+
+              <p className="text-3xl mt-4 text-purple-500">
+                {analytics.interview_questions}
+              </p>
+            </div>
+
           </div>
-
-          <div className="bg-slate-900 p-6 rounded-xl">
-            <h2 className="text-lg font-semibold">
-              Avg Resume Score
-            </h2>
-
-            <p className="text-3xl mt-4 text-blue-500">
-              82%
-            </p>
-          </div>
-
-          <div className="bg-slate-900 p-6 rounded-xl">
-            <h2 className="text-lg font-semibold">
-              Job Matches
-            </h2>
-
-            <p className="text-3xl mt-4 text-blue-500">
-              95
-            </p>
-          </div>
-
-          <div className="bg-slate-900 p-6 rounded-xl">
-            <h2 className="text-lg font-semibold">
-              Users
-            </h2>
-
-            <p className="text-3xl mt-4 text-blue-500">
-              50
-            </p>
-          </div>
-
-        </div>
+        )}
       </div>
     </div>
   );

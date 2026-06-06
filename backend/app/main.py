@@ -9,6 +9,8 @@ from app.routes.recommendation_routes import router as recommendation_router
 from app.routes.roadmap_routes import router as roadmap_router
 from app.routes.career_routes import router as career_router
 from app.routes.interview_routes import router as interview_router
+from app.routes.job_matching_routes import router as job_router
+from app.routes.analytics_routes import router as analytics_router
 
 app = FastAPI()
 
@@ -29,6 +31,8 @@ app.include_router(recommendation_router)
 app.include_router(roadmap_router)
 app.include_router(career_router)
 app.include_router(interview_router)
+app.include_router(job_router)
+app.include_router(analytics_router)
 
 @app.get("/")
 def home():
