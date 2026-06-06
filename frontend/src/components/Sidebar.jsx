@@ -37,16 +37,6 @@ function Sidebar() {
 
         <li>
           <Link
-            to="/skill-gap"
-            className="flex items-center gap-3 hover:text-blue-400"
-          >
-            <FaChartBar />
-            Skill Gap Analysis
-          </Link>
-        </li>
-
-        <li>
-          <Link
             to="/career-recommendation"
             className="flex items-center gap-3 hover:text-blue-400"
           >
@@ -57,11 +47,11 @@ function Sidebar() {
 
         <li>
           <Link
-            to="/interview-generator"
+            to="/skill-gap"
             className="flex items-center gap-3 hover:text-blue-400"
           >
-            <FaRobot />
-            Interview Generator
+            <FaChartBar />
+            Skill Gap Analysis
           </Link>
         </li>
 
@@ -72,6 +62,16 @@ function Sidebar() {
           >
             <FaChartBar />
             Learning Roadmap
+          </Link>
+        </li>
+
+        <li>
+          <Link
+            to="/interview-generator"
+            className="flex items-center gap-3 hover:text-blue-400"
+          >
+            <FaRobot />
+            Interview Generator
           </Link>
         </li>
 
@@ -91,7 +91,7 @@ function Sidebar() {
             className="flex items-center gap-3 hover:text-blue-400"
           >
             <FaChartBar />
-            Analytics
+            Analytics Dashboard
           </Link>
         </li>
       </ul>

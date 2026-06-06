@@ -8,6 +8,7 @@ const [selectedRole, setSelectedRole] = useState("");
 const [matchScore, setMatchScore] = useState(0);
 const [missingSkills, setMissingSkills] = useState([]);
 const [loading, setLoading] = useState(false);
+const [recommendations, setRecommendations] = useState([]);
 
 const handleUpload = async () => {
 if (!file) {
@@ -42,27 +43,46 @@ try {
 
   setSkills(data.skills || []);
 
-  // Analyze Role
-  const roleResponse = await fetch(
-    "http://127.0.0.1:8000/analyze-role",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        role: selectedRole,
-        skills: data.skills,
-      }),
-    }
-  );
+// Skill Gap Analysis
+ const gapResponse = await fetch(
+  "http://127.0.0.1:8000/skill-gap",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      role: selectedRole,
+      skills: data.skills,
+    }),
+  }
+);
 
-  const roleData = await roleResponse.json();
+const gapData = await gapResponse.json();
 
-  console.log("Role Data:", roleData);
+console.log("Gap Data:", gapData);
 
-  setMatchScore(roleData.match_score || 0);
-  setMissingSkills(roleData.missing_skills || []);
+setMatchScore(100 - gapData.gap_percentage);
+setMissingSkills(gapData.missing_skills || []);
+const recommendationResponse = await fetch(
+  "http://127.0.0.1:8000/learning-recommendations",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      missing_skills: gapData.missing_skills,
+    }),
+  }
+);
+
+const recommendationData =
+  await recommendationResponse.json();
+
+setRecommendations(
+  recommendationData.recommendations || []
+);
 
   setLoading(false);
 } catch (error) {
@@ -154,8 +174,8 @@ return ( <div className="flex min-h-screen bg-slate-950 text-white"> <Sidebar />
         </h3>
 
         <p className="text-4xl mt-4 text-blue-500">
-          {matchScore}%
-        </p>
+       {matchScore > 0 ? `${matchScore}%` : "--"}
+       </p>
       </div>
 
       {/* Detected Skills */}
@@ -200,6 +220,32 @@ return ( <div className="flex min-h-screen bg-slate-950 text-white"> <Sidebar />
             <p>No missing skills</p>
           )}
         </div>
+        <div className="bg-slate-900 p-6 rounded-xl mt-8">
+  <h3 className="text-2xl font-semibold mb-4">
+    Learning Recommendations
+  </h3>
+
+  {recommendations.length > 0 ? (
+    recommendations.map((item, index) => (
+      <div
+        key={index}
+        className="bg-slate-800 p-4 rounded mb-3"
+      >
+        <p className="font-semibold text-blue-400">
+          {item.skill}
+        </p>
+
+        <p className="text-gray-300">
+          {item.recommendation}
+        </p>
+      </div>
+    ))
+  ) : (
+    <p className="text-gray-400">
+      Upload a resume and select a role
+    </p>
+  )}
+</div>
       </div>
 
     </div>

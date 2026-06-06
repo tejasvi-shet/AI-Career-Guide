@@ -14,20 +14,45 @@ SKILLS = [
     "Node.js",
     "MongoDB",
     "MySQL",
+    "SQL",
     "FastAPI",
     "Flask",
     "Django",
+
     "TensorFlow",
     "PyTorch",
-    "Docker",
-    "Git",
-    "GitHub",
-    "Azure",
-    "AWS",
-    "Power BI",
     "Machine Learning",
     "Deep Learning",
-    "SQL"
+    "Artificial Intelligence",
+    "Generative AI",
+    "GenAI",
+    "NLP",
+    "LLM",
+
+    "Pandas",
+    "NumPy",
+    "Matplotlib",
+    "Seaborn",
+    "Scikit-Learn",
+
+    "Docker",
+    "Kubernetes",
+    "Git",
+    "GitHub",
+
+    "AWS",
+    "Azure",
+    "Google Cloud",
+    "GCP",
+
+    "Power BI",
+    "Excel",
+    "Statistics",
+
+    "HTML",
+    "CSS",
+    "Bootstrap",
+    "Tailwind CSS"
 ]
 
 
