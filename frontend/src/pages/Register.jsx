@@ -55,6 +55,7 @@ function Register() {
             value={formData.name}
             onChange={handleChange}
             className="w-full p-3 rounded bg-slate-800 text-white"
+            required
           />
 
           <input
@@ -64,6 +65,7 @@ function Register() {
             value={formData.email}
             onChange={handleChange}
             className="w-full p-3 rounded bg-slate-800 text-white"
+            required
           />
 
           <input
@@ -73,11 +75,12 @@ function Register() {
             value={formData.password}
             onChange={handleChange}
             className="w-full p-3 rounded bg-slate-800 text-white"
+            required
           />
 
           <button
             type="submit"
-            className="w-full bg-blue-600 py-3 rounded hover:bg-blue-700"
+            className="w-full bg-blue-600 py-3 rounded hover:bg-blue-700 transition"
           >
             Register
           </button>
@@ -88,6 +91,16 @@ function Register() {
             {message}
           </p>
         )}
+
+        <p className="text-center mt-6 text-gray-400">
+          Already have an account?{" "}
+          <span
+            onClick={() => navigate("/login")}
+            className="text-blue-500 cursor-pointer hover:underline"
+          >
+            Login
+          </span>
+        </p>
       </div>
     </div>
   );

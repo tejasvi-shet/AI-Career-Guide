@@ -31,8 +31,19 @@ function Login() {
       setMessage(response.data.message);
 
       if (response.data.message === "Login successful") {
-        navigate("/dashboard");
-      }
+
+  localStorage.setItem(
+    "isLoggedIn",
+    "true"
+  );
+
+  localStorage.setItem(
+    "userEmail",
+    formData.email
+  );
+
+  navigate("/dashboard");
+}
     } catch (error) {
       setMessage("Login failed");
       console.error(error);
@@ -54,6 +65,7 @@ function Login() {
             value={formData.email}
             onChange={handleChange}
             className="w-full p-3 rounded bg-slate-800 text-white"
+            required
           />
 
           <input
@@ -63,11 +75,12 @@ function Login() {
             value={formData.password}
             onChange={handleChange}
             className="w-full p-3 rounded bg-slate-800 text-white"
+            required
           />
 
           <button
             type="submit"
-            className="w-full bg-blue-600 py-3 rounded hover:bg-blue-700"
+            className="w-full bg-blue-600 py-3 rounded hover:bg-blue-700 transition"
           >
             Login
           </button>
@@ -78,6 +91,16 @@ function Login() {
             {message}
           </p>
         )}
+
+        <p className="text-center mt-6 text-gray-400">
+          Don't have an account?{" "}
+          <span
+            onClick={() => navigate("/register")}
+            className="text-blue-500 cursor-pointer hover:underline"
+          >
+            Register
+          </span>
+        </p>
       </div>
     </div>
   );

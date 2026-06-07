@@ -1,6 +1,19 @@
 import Navbar from "../components/Navbar";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
+
+  const handleGetStarted = () => {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+  if (isLoggedIn) {
+    navigate("/dashboard");
+  } else {
+    navigate("/login");
+  }
+};
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
       <Navbar />
@@ -16,8 +29,11 @@ function Home() {
           recommendations, generate interview questions, and find matching jobs.
         </p>
 
-        <button className="bg-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-700">
-          Get Started
+        <button
+          onClick={handleGetStarted}
+          className="bg-blue-600 px-8 py-3 rounded-lg hover:bg-blue-700 transition"
+        >
+          Start Career Analysis
         </button>
       </section>
 
@@ -27,6 +43,7 @@ function Home() {
           <h2 className="text-2xl font-semibold mb-3">
             Resume Analyzer
           </h2>
+
           <p className="text-gray-400">
             Upload resumes and get AI-powered feedback and scoring.
           </p>
@@ -36,6 +53,7 @@ function Home() {
           <h2 className="text-2xl font-semibold mb-3">
             Skill Gap Analysis
           </h2>
+
           <p className="text-gray-400">
             Compare your skills with target job roles and identify gaps.
           </p>
@@ -45,6 +63,7 @@ function Home() {
           <h2 className="text-2xl font-semibold mb-3">
             Career Recommendation
           </h2>
+
           <p className="text-gray-400">
             Discover career paths based on your skills and interests.
           </p>

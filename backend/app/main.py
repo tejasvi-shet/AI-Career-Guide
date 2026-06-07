@@ -11,6 +11,11 @@ from app.routes.career_routes import router as career_router
 from app.routes.interview_routes import router as interview_router
 from app.routes.job_matching_routes import router as job_router
 from app.routes.analytics_routes import router as analytics_router
+from app.routes.history_routes import router as history_router
+from app.services.llm_service import (
+    test_llm,
+    generate_resume_feedback
+)
 
 app = FastAPI()
 
@@ -33,6 +38,7 @@ app.include_router(career_router)
 app.include_router(interview_router)
 app.include_router(job_router)
 app.include_router(analytics_router)
+app.include_router(history_router)
 
 @app.get("/")
 def home():
@@ -40,8 +46,29 @@ def home():
         "message": "AI Career Guidance Backend Running"
     }
 
+
 @app.get("/health")
 def health():
     return {
         "status": "healthy"
+    }
+
+
+@app.get("/test-llm")
+def test_llm_api():
+    return {
+        "response": test_llm()
+    }
+
+
+# AI Resume Feedback Endpoint
+@app.post("/resume-feedback")
+def resume_feedback(data: dict):
+
+    skills = data.get("skills", [])
+
+    feedback = generate_resume_feedback(skills)
+
+    return {
+        "feedback": feedback
     }
