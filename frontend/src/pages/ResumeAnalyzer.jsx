@@ -259,46 +259,57 @@ return (
         </div>
       </div>
 
-      {/* Learning Recommendations */}
-      <div className="bg-slate-900 p-6 rounded-xl mt-8">
-        <h3 className="text-2xl font-semibold mb-4">
-          Learning Recommendations
-        </h3>
+      {/* AI Feedback + Learning Recommendations */}
+<div className="grid md:grid-cols-2 gap-6 mt-8">
 
-        {recommendations.length > 0 ? (
-          recommendations.map((item, index) => (
-            <div
-              key={index}
-              className="bg-slate-800 p-4 rounded mb-3"
-            >
-              <p className="font-semibold text-blue-400">
-                {item.skill}
-              </p>
+  {/* AI Resume Feedback */}
+  <div className="bg-slate-900 p-4 rounded-xl">
+    <h3 className="text-xl font-semibold mb-3 text-green-400">
+      AI Resume Feedback
+    </h3>
 
-              <p className="text-gray-300">
-                {item.recommendation}
-              </p>
-            </div>
-          ))
-        ) : (
-          <p className="text-gray-400">
-            Upload a resume and select a role
-          </p>
-        )}
+    {aiFeedback ? (
+      <div className="whitespace-pre-wrap text-gray-300 text-sm max-h-[350px] overflow-y-auto pr-2 custom-scrollbar">
+        {aiFeedback}
       </div>
+    ) : (
+      <p className="text-gray-400 text-sm">
+        Upload a resume to receive AI feedback.
+      </p>
+    )}
+  </div>
 
-      {/* AI Resume Feedback */}
-      {aiFeedback && (
-        <div className="bg-slate-900 p-6 rounded-xl mt-8">
-          <h3 className="text-2xl font-semibold mb-4 text-green-400">
-            AI Resume Feedback
-          </h3>
+  {/* Learning Recommendations */}
+  <div className="bg-slate-900 p-4 rounded-xl">
+    <h3 className="text-xl font-semibold mb-3">
+      Learning Recommendations
+    </h3>
 
-          <div className="whitespace-pre-wrap text-gray-300">
-            {aiFeedback}
+    <div className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar">
+      {recommendations.length > 0 ? (
+        recommendations.map((item, index) => (
+          <div
+            key={index}
+            className="bg-slate-800 p-3 rounded-lg mb-2"
+          >
+            <p className="font-semibold text-blue-400 text-sm">
+              {item.skill}
+            </p>
+
+            <p className="text-gray-300 text-sm mt-1">
+              {item.recommendation}
+            </p>
           </div>
-        </div>
+        ))
+      ) : (
+        <p className="text-gray-400 text-sm">
+          Upload a resume and select a role.
+        </p>
       )}
+    </div>
+  </div>
+
+</div>
     </div>
   </div>
 );

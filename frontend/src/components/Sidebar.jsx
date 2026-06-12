@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 import {
   FaHome,
   FaFileAlt,
@@ -6,10 +7,13 @@ import {
   FaBriefcase,
   FaRobot,
   FaSignOutAlt,
+  FaHistory,
+  FaBars,
 } from "react-icons/fa";
 
 function Sidebar() {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
@@ -17,11 +21,27 @@ function Sidebar() {
   };
 
   return (
-    <div className="w-64 bg-slate-900 p-5 min-h-screen flex flex-col">
+    <div
+      className={`bg-slate-900 min-h-screen p-5 flex flex-col transition-all duration-300 ${
+        isOpen ? "w-64" : "w-20"
+      }`}
+    >
+      {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-blue-500 mb-8">
-          AI Career Guide
-        </h2>
+        <div className="flex items-center justify-between mb-8">
+          {isOpen && (
+            <h2 className="text-2xl font-bold text-blue-500">
+              AI Career Guide
+            </h2>
+          )}
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-white text-xl"
+          >
+            <FaBars />
+          </button>
+        </div>
 
         <ul className="space-y-4">
           <li>
@@ -30,7 +50,7 @@ function Sidebar() {
               className="flex items-center gap-3 hover:text-blue-400"
             >
               <FaHome />
-              Dashboard
+              {isOpen && "Dashboard"}
             </Link>
           </li>
 
@@ -40,7 +60,7 @@ function Sidebar() {
               className="flex items-center gap-3 hover:text-blue-400"
             >
               <FaFileAlt />
-              Resume Analyzer
+              {isOpen && "Resume Analyzer"}
             </Link>
           </li>
 
@@ -50,7 +70,7 @@ function Sidebar() {
               className="flex items-center gap-3 hover:text-blue-400"
             >
               <FaBriefcase />
-              Career Recommendation
+              {isOpen && "Career Recommendation"}
             </Link>
           </li>
 
@@ -60,7 +80,7 @@ function Sidebar() {
               className="flex items-center gap-3 hover:text-blue-400"
             >
               <FaChartBar />
-              Skill Gap Analysis
+              {isOpen && "Skill Gap Analysis"}
             </Link>
           </li>
 
@@ -70,7 +90,7 @@ function Sidebar() {
               className="flex items-center gap-3 hover:text-blue-400"
             >
               <FaChartBar />
-              Learning Roadmap
+              {isOpen && "Learning Roadmap"}
             </Link>
           </li>
 
@@ -80,7 +100,7 @@ function Sidebar() {
               className="flex items-center gap-3 hover:text-blue-400"
             >
               <FaRobot />
-              Interview Generator
+              {isOpen && "Interview Generator"}
             </Link>
           </li>
 
@@ -90,7 +110,7 @@ function Sidebar() {
               className="flex items-center gap-3 hover:text-blue-400"
             >
               <FaBriefcase />
-              Job Matching
+              {isOpen && "Job Matching"}
             </Link>
           </li>
 
@@ -100,20 +120,30 @@ function Sidebar() {
               className="flex items-center gap-3 hover:text-blue-400"
             >
               <FaChartBar />
-              Analytics Dashboard
+              {isOpen && "Analytics Dashboard"}
+            </Link>
+          </li>
+
+          <li>
+            <Link
+              to="/history"
+              className="flex items-center gap-3 hover:text-blue-400"
+            >
+              <FaHistory />
+              {isOpen && "Analysis History"}
             </Link>
           </li>
         </ul>
       </div>
 
-      {/* Logout Button */}
+      {/* Logout */}
       <div className="mt-auto pt-8">
         <button
           onClick={handleLogout}
           className="w-full flex items-center justify-center gap-2 bg-red-600 py-2 rounded-lg hover:bg-red-700 transition"
         >
           <FaSignOutAlt />
-          Logout
+          {isOpen && "Logout"}
         </button>
       </div>
     </div>

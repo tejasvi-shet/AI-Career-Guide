@@ -11,6 +11,7 @@ import InterviewGenerator from "../pages/InterviewGenerator";
 import LearningRoadmap from "../pages/LearningRoadmap";
 import JobMatching from "../pages/JobMatching";
 import Analytics from "../pages/Analytics";
+import History from "../pages/History";
 
 function AppRoutes() {
   return (
@@ -26,6 +27,7 @@ function AppRoutes() {
       <Route path="/learning-roadmap" element={<LearningRoadmap />} />
       <Route path="/job-matching" element={<JobMatching />} />
       <Route path="/analytics" element={<Analytics />} />
+      <Route path="/history" element={<History />} />
     </Routes>
   );
 }
