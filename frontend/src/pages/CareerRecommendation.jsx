@@ -3,7 +3,7 @@ import Sidebar from "../components/Sidebar";
 
 function CareerRecommendation() {
   const [file, setFile] = useState(null);
-  const [careers, setCareers] = useState([]);
+  const [recommendations, setRecommendations] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleAnalyze = async () => {
@@ -18,7 +18,6 @@ function CareerRecommendation() {
       const formData = new FormData();
       formData.append("file", file);
 
-      // Upload Resume
       const resumeResponse = await fetch(
         "http://127.0.0.1:8000/upload-resume",
         {
@@ -29,7 +28,6 @@ function CareerRecommendation() {
 
       const resumeData = await resumeResponse.json();
 
-      // Career Recommendation
       const careerResponse = await fetch(
         "http://127.0.0.1:8000/career-recommendation",
         {
@@ -45,9 +43,23 @@ function CareerRecommendation() {
 
       const careerData = await careerResponse.json();
 
-      setCareers(
-        careerData.recommended_careers || []
+      setRecommendations(
+        careerData.recommendations || ""
       );
+      await fetch(
+  "http://127.0.0.1:8000/save-history",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: localStorage.getItem("userEmail"),
+      career_recommendation:
+        careerData.recommendations,
+    }),
+  }
+);
 
       setLoading(false);
     } catch (error) {
@@ -62,17 +74,20 @@ function CareerRecommendation() {
       <Sidebar />
 
       <div className="flex-1 p-8">
+
         <h1 className="text-4xl font-bold mb-8">
-          Career Recommendation
+          AI Career Recommendation
         </h1>
 
         {/* Upload Section */}
         <div className="bg-slate-900 p-6 rounded-xl mb-8">
+
           <h2 className="text-2xl font-semibold mb-4">
             Upload Resume
           </h2>
 
           <div className="flex items-center gap-4 flex-wrap">
+
             <label className="inline-flex items-center px-4 py-2 bg-blue-600 rounded-md cursor-pointer hover:bg-blue-700 transition">
               📄 Choose File
               <input
@@ -86,7 +101,7 @@ function CareerRecommendation() {
             </label>
 
             {file && (
-              <span className="text-green-400 text-sm">
+              <span className="text-green-400">
                 ✓ {file.name}
               </span>
             )}
@@ -97,60 +112,40 @@ function CareerRecommendation() {
             >
               {loading
                 ? "Analyzing..."
-                : "Get Recommendations"}
+                : "Get AI Recommendations"}
             </button>
+
           </div>
         </div>
 
-        {/* Career Cards */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {careers.length > 0 ? (
-            careers.map((career, index) => (
-              <div
-                key={index}
-                className={`p-6 rounded-xl ${
-                  index === 0
-                    ? "bg-slate-900 border-2 border-yellow-400"
-                    : "bg-slate-900"
-                }`}
-              >
-                {index === 0 && (
-                  <p className="text-yellow-400 font-bold mb-2">
-                    ⭐ Best Match
-                  </p>
-                )}
+        {/* AI Recommendation Output */}
+        <div className="bg-slate-900 p-6 rounded-xl">
 
-                <h2 className="text-xl font-semibold mb-2 text-blue-400">
-                  {career.career}
-                </h2>
+          <h2 className="text-2xl font-semibold mb-4 text-blue-400">
+            AI Career Suggestions
+          </h2>
 
-                <p className="text-green-400 font-semibold mb-4">
-                  Match Score: {career.match_percentage}%
-                </p>
-
-                <div className="flex flex-wrap gap-2">
-                  {career.matched_skills.map(
-                    (skill, idx) => (
-                      <span
-                        key={idx}
-                        className="bg-green-600 px-3 py-1 rounded-full text-sm"
-                      >
-                        ✓ {skill}
-                      </span>
-                    )
-                  )}
-                </div>
-              </div>
-            ))
-          ) : (
-            <div className="bg-slate-900 p-6 rounded-xl">
-              <p className="text-gray-400">
-                Upload a resume to get career
-                recommendations
-              </p>
+          {recommendations ? (
+            <div
+              className="
+                whitespace-pre-wrap
+                text-gray-300
+                max-h-[500px]
+                overflow-y-auto
+                custom-scrollbar
+              "
+            >
+              {recommendations}
             </div>
+          ) : (
+            <p className="text-gray-400">
+              Upload a resume to receive AI-powered
+              career recommendations.
+            </p>
           )}
+
         </div>
+
       </div>
     </div>
   );

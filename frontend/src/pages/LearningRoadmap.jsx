@@ -40,24 +40,25 @@ function LearningRoadmap() {
   };
 
   return (
-    <div className="flex min-h-screen bg-slate-950 text-white">
-      <Sidebar />
+  <div className="flex min-h-screen bg-slate-950 text-white">
+    <Sidebar />
 
-      <div className="flex-1 p-8">
-        <h1 className="text-4xl font-bold mb-8">
-          Learning Roadmap
-        </h1>
+    <div className="flex-1 p-8">
+      <h1 className="text-4xl font-bold mb-8">
+        Learning Roadmap
+      </h1>
 
-        {/* Role Selection */}
-        <div className="bg-slate-900 p-6 rounded-xl mb-8">
-          <h2 className="text-2xl font-semibold mb-4">
-            Select Career Goal
-          </h2>
+      {/* Role Selection */}
+      <div className="bg-slate-900 p-6 rounded-xl mb-8">
+        <h2 className="text-2xl font-semibold mb-4">
+          Select Career Goal
+        </h2>
 
+        <div className="flex flex-wrap gap-4 items-center">
           <select
             value={selectedRole}
             onChange={(e) => setSelectedRole(e.target.value)}
-            className="bg-slate-800 p-3 rounded text-white w-full md:w-80 mb-4"
+            className="bg-slate-800 p-3 rounded text-white w-full md:w-80"
           >
             <option value="">Choose Role</option>
             <option value="AI Engineer">
@@ -74,50 +75,67 @@ function LearningRoadmap() {
             </option>
           </select>
 
-          <br />
-
           <button
             onClick={generateRoadmap}
-            className="bg-blue-600 px-6 py-2 rounded hover:bg-blue-700"
+            className="bg-blue-600 px-6 py-3 rounded-lg hover:bg-blue-700 transition"
           >
             {loading
               ? "Generating..."
               : "Generate Roadmap"}
           </button>
         </div>
+      </div>
 
-        {/* Roadmap Result */}
-        <div className="bg-slate-900 p-6 rounded-xl">
-          <h2 className="text-2xl font-semibold mb-4">
-            Suggested Roadmap
-          </h2>
+      {/* Roadmap Timeline */}
+      <div className="bg-slate-900 p-6 rounded-xl">
+        <h2 className="text-2xl font-semibold mb-6">
+          Learning Journey
+        </h2>
 
-          {roadmap.length > 0 ? (
-            <div className="space-y-4">
-              {roadmap.map((step, index) => (
-                <div
-                  key={index}
-                  className="bg-slate-800 p-4 rounded-lg"
-                >
-                  <span className="font-bold text-blue-400">
+        {roadmap.length > 0 ? (
+          <div className="relative">
+
+            {roadmap.map((step, index) => (
+              <div
+                key={index}
+                className="flex gap-4 mb-8 relative"
+              >
+                {/* Timeline Circle */}
+                <div className="flex flex-col items-center">
+                  <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold">
+                    {index + 1}
+                  </div>
+
+                  {index !== roadmap.length - 1 && (
+                    <div className="w-1 h-16 bg-blue-500 mt-2"></div>
+                  )}
+                </div>
+
+                {/* Content */}
+                <div className="bg-slate-800 p-4 rounded-lg flex-1 shadow-lg">
+                  <h3 className="font-semibold text-blue-400 mb-2">
                     Step {index + 1}
-                  </span>
+                  </h3>
 
-                  <p className="mt-2">
+                  <p className="text-gray-300">
                     {step}
                   </p>
                 </div>
-              ))}
-            </div>
-          ) : (
-            <p className="text-gray-400">
-              Select a role and generate a roadmap
+              </div>
+            ))}
+
+          </div>
+        ) : (
+          <div className="text-center py-12">
+            <p className="text-gray-400 text-lg">
+              Select a role and generate your personalized roadmap 🚀
             </p>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default LearningRoadmap;

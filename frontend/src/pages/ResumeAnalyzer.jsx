@@ -116,6 +116,8 @@ await fetch(
       missing_skills: gapData.missing_skills,
       match_score: 100 - gapData.gap_percentage,
       feedback: feedbackData.feedback,
+      career_recommendation: "",
+      job_recommendation: "",
     }),
   }
 );
