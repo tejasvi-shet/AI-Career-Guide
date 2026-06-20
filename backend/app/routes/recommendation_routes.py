@@ -14,12 +14,21 @@ def get_recommendations(data: RecommendationRequest):
     recommendations = []
 
     for skill in data.missing_skills:
-        if skill in LEARNING_RESOURCES:
-            recommendations.append({
-                "skill": skill,
-                "recommendation":
-                    LEARNING_RESOURCES[skill]
-            })
+       recommendations.append({
+
+    "skill": skill,
+
+    "recommendation":
+
+    LEARNING_RESOURCES.get(
+
+        skill,
+
+        f"Learn {skill} using YouTube, Coursera and official documentation."
+
+    )
+
+})
 
     return {
         "recommendations": recommendations

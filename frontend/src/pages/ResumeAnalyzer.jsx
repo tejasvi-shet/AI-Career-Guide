@@ -43,6 +43,10 @@ try {
   console.log("Resume Data:", data);
 
   setSkills(data.skills || []);
+  localStorage.setItem(
+  "skills",
+  JSON.stringify(data.skills || [])
+);
 
 // Skill Gap Analysis
  const gapResponse = await fetch(
@@ -179,10 +183,20 @@ return (
         </h2>
 
         <select
-          value={selectedRole}
-          onChange={(e) => setSelectedRole(e.target.value)}
-          className="bg-slate-800 p-3 rounded text-white w-full md:w-80"
-        >
+  value={selectedRole}
+  onChange={(e) => {
+
+    setSelectedRole(e.target.value);
+
+    localStorage.setItem(
+      "selectedRole",
+      e.target.value
+    );
+
+  }}
+
+  className="bg-slate-800 p-3 rounded text-white w-full md:w-80"
+>
           <option value="">Choose Role</option>
           <option value="Software Engineer">
             Software Engineer
@@ -281,35 +295,54 @@ return (
     )}
   </div>
 
-  {/* Learning Recommendations */}
-  <div className="bg-slate-900 p-4 rounded-xl">
-    <h3 className="text-xl font-semibold mb-3">
-      Learning Recommendations
-    </h3>
+ <div className="bg-slate-900 p-4 rounded-xl">
 
-    <div className="max-h-[350px] overflow-y-auto pr-2 custom-scrollbar">
-      {recommendations.length > 0 ? (
-        recommendations.map((item, index) => (
-          <div
-            key={index}
-            className="bg-slate-800 p-3 rounded-lg mb-2"
-          >
-            <p className="font-semibold text-blue-400 text-sm">
-              {item.skill}
-            </p>
+  <h3 className="text-xl font-semibold mb-3">
+    Learning Recommendations
+  </h3>
 
-            <p className="text-gray-300 text-sm mt-1">
-              {item.recommendation}
-            </p>
-          </div>
-        ))
-      ) : (
-        <p className="text-gray-400 text-sm">
-          Upload a resume and select a role.
-        </p>
-      )}
-    </div>
+  <div className="max-h-[350px] overflow-y-auto pr-2">
+
+    {!skills.length ? (
+
+      <p className="text-gray-400">
+        Upload a resume and select a role
+        to see learning recommendations.
+      </p>
+
+    ) : recommendations.length > 0 ? (
+
+      recommendations.map((item, index) => (
+
+        <div
+          key={index}
+          className="bg-slate-800 p-3 rounded-lg mb-3"
+        >
+
+          <p className="font-semibold text-blue-400">
+            {item.skill}
+          </p>
+
+          <p className="text-gray-300 mt-2">
+            {item.recommendation}
+          </p>
+
+        </div>
+
+      ))
+
+    ) : (
+
+      <p className="text-green-400">
+        🎉 Great job! You already have all
+        the required skills for this role.
+      </p>
+
+    )}
+
   </div>
+
+</div>
 
 </div>
     </div>
