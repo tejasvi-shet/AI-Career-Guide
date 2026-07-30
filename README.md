@@ -1,6 +1,18 @@
 # AI Career Guide 🚀
 
-An AI-powered career guidance platform that helps users analyze resumes, identify skill gaps, receive AI-powered career recommendations, generate interview questions, and match resumes with suitable job roles.
+An AI-powered career guidance platform that helps users analyze resumes, identify skill gaps, receive AI-powered career recommendations, generate interview questions, create personalized learning roadmaps, and match resumes with suitable job roles.
+
+---
+
+# 🌐 Live Demo
+
+### Frontend
+
+https://ai-career-guide-frontend.onrender.com
+
+### Backend API (Swagger)
+
+https://ai-career-guide-backend-weg0.onrender.com/docs
 
 ---
 
@@ -9,19 +21,19 @@ An AI-powered career guidance platform that helps users analyze resumes, identif
 ## 📄 Resume Analyzer
 
 - Upload PDF resumes
-- Automatically extract technical skills
-- Calculate resume match score
-- Detect missing skills
-- Generate AI-powered resume feedback
-- Recommend learning resources
+- Automatic skill extraction
+- Resume match score calculation
+- Missing skill detection
+- AI-powered resume feedback
+- Learning resource recommendations
 
 ---
 
 ## 🎯 Career Recommendation
 
 - Personalized career suggestions
-- AI-based recommendations according to user skills
-- Suitable career path matching
+- AI-driven career path prediction
+- Skill-based role recommendations
 
 ---
 
@@ -38,49 +50,50 @@ Compare candidate skills with target job roles and display:
 
 ## 📚 Learning Roadmap
 
-- Suggest learning resources
-- Improve missing technical skills
-- Personalized upskilling suggestions
+- Personalized learning roadmap
+- Skill improvement recommendations
+- Resource suggestions
 
 ---
 
 ## 💼 Job Matching
 
-- Match resumes with suitable job roles
-- Display compatibility score
+- Resume-to-job matching
+- Compatibility score
+- AI-generated recommendations
 
 ---
 
 ## 🎤 Interview Question Generator
 
-- Generate interview questions
-- Role-specific technical questions
-- Beginner to intermediate level
+- Role-specific interview questions
+- Beginner to Intermediate difficulty
+- AI-generated technical questions
 
 ---
 
 ## 📜 Analysis History
 
 - Save previous resume analyses
-- View historical records
+- Track historical reports
 
 ---
 
 ## 📈 Analytics Dashboard
 
-View:
+View insights including:
 
 - Total Resume Analyses
 - Average Match Score
-- Top Skills
 - Most Selected Role
+- Top Skills
 - Recent Analyses
 
 ---
 
 ## 📊 Power BI Dashboard
 
-Interactive Power BI dashboard including:
+Interactive dashboard containing:
 
 - Resume Count by Role
 - Role Distribution
@@ -91,6 +104,28 @@ Interactive Power BI dashboard including:
 
 ---
 
+# 🏗 Architecture
+
+Frontend (React + Tailwind CSS)
+
+⬇
+
+FastAPI Backend
+
+⬇
+
+Groq Llama 3.3 70B API
+
+⬇
+
+MongoDB Atlas
+
+⬇
+
+Power BI Dashboard
+
+---
+
 # 🛠 Tech Stack
 
 ## Frontend
@@ -98,11 +133,14 @@ Interactive Power BI dashboard including:
 - React.js
 - Tailwind CSS
 - Recharts
+- Axios
 
 ## Backend
 
 - FastAPI
 - Python
+- Pydantic
+- PyMongo
 
 ## Database
 
@@ -121,6 +159,11 @@ Interactive Power BI dashboard including:
 
 - Docker
 - Docker Compose
+
+## Deployment
+
+- Render
+- MongoDB Atlas
 
 ## Tools
 
@@ -245,10 +288,10 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend runs on
+Runs on:
 
-```text
-https://ai-career-guide-backend-weg0.onrender.com
+```
+http://127.0.0.1:8000
 ```
 
 ---
@@ -263,9 +306,9 @@ npm install
 npm run dev
 ```
 
-Frontend runs on
+Runs on:
 
-```text
+```
 http://localhost:5173
 ```
 
@@ -273,7 +316,7 @@ http://localhost:5173
 
 # 🐳 Docker
 
-Build containers
+Build Docker images
 
 ```bash
 docker compose build
@@ -293,9 +336,35 @@ docker compose down
 
 ---
 
+# ☁️ Deployment
+
+The application is deployed on **Render**.
+
+### Frontend
+
+https://ai-career-guide-frontend.onrender.com
+
+### Backend
+
+https://ai-career-guide-backend-weg0.onrender.com
+
+### Database
+
+MongoDB Atlas
+
+The application is fully containerized using Docker and can also be deployed on:
+
+- Render
+- Docker Compose
+- Microsoft Azure
+- AWS
+- Google Cloud Platform
+
+---
+
 # 📊 Power BI Dashboard
 
-The project includes an interactive Power BI dashboard that provides insights into:
+The project includes an interactive Power BI dashboard providing insights into:
 
 - Resume Analysis Trends
 - Average Match Score
@@ -304,26 +373,11 @@ The project includes an interactive Power BI dashboard that provides insights in
 - Missing Skills
 - Recent Analyses
 
-Dashboard file:
+Dashboard File:
 
-```text
+```
 powerbi/AI_Resume_Analyzer_Dashboard.pbix
 ```
-
----
-
-# ☁️ Deployment
-
-The application has been containerized using Docker and is ready for deployment on cloud platforms.
-
-Supported deployment platforms:
-
-- Docker Compose
-- Render
-- Microsoft Azure (Deployment Ready)
-- MongoDB Atlas
-
-> Note: Dockerization has been completed. Azure deployment depends on the permissions and policies of the Azure subscription being used.
 
 ---
 
@@ -333,9 +387,11 @@ Supported deployment platforms:
 
 Final Year Computer Engineering Student
 
-GitHub: https://github.com/tejasvi-shet
+GitHub:
+https://github.com/tejasvi-shet
 
-LinkedIn: https://linkedin.com/in/tejasvi-shet
+LinkedIn:
+https://linkedin.com/in/tejasvi-shet
 
 ---
 
