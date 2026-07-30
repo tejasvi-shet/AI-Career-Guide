@@ -24,26 +24,19 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/login",
-        formData
+        "https://ai-career-guide-backend-weg0.onrender.com/login",
+        formData,
       );
 
       setMessage(response.data.message);
 
       if (response.data.message === "Login successful") {
+        localStorage.setItem("isLoggedIn", "true");
 
-  localStorage.setItem(
-    "isLoggedIn",
-    "true"
-  );
+        localStorage.setItem("userEmail", formData.email);
 
-  localStorage.setItem(
-    "userEmail",
-    formData.email
-  );
-
-  navigate("/dashboard");
-}
+        navigate("/dashboard");
+      }
     } catch (error) {
       setMessage("Login failed");
       console.error(error);
@@ -86,11 +79,7 @@ function Login() {
           </button>
         </form>
 
-        {message && (
-          <p className="text-center mt-4 text-white">
-            {message}
-          </p>
-        )}
+        {message && <p className="text-center mt-4 text-white">{message}</p>}
 
         <p className="text-center mt-6 text-gray-400">
           Don't have an account?{" "}

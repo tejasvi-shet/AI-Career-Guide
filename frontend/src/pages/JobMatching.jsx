@@ -19,17 +19,17 @@ function JobMatching() {
       formData.append("file", file);
 
       const resumeResponse = await fetch(
-        "http://127.0.0.1:8000/upload-resume",
+        "https://ai-career-guide-backend-weg0.onrender.com/upload-resume",
         {
           method: "POST",
           body: formData,
-        }
+        },
       );
 
       const resumeData = await resumeResponse.json();
 
       const jobResponse = await fetch(
-        "http://127.0.0.1:8000/job-matching",
+        "https://ai-career-guide-backend-weg0.onrender.com/job-matching",
         {
           method: "POST",
           headers: {
@@ -38,7 +38,7 @@ function JobMatching() {
           body: JSON.stringify({
             skills: resumeData.skills,
           }),
-        }
+        },
       );
 
       const jobData = await jobResponse.json();
@@ -46,19 +46,18 @@ function JobMatching() {
       setJobs(jobData.jobs || "");
 
       await fetch(
-  "http://127.0.0.1:8000/save-history",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      email: localStorage.getItem("userEmail"),
-      job_recommendation:
-        jobData.jobs,
-    }),
-  }
-);
+        "https://ai-career-guide-backend-weg0.onrender.com/save-history",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: localStorage.getItem("userEmail"),
+            job_recommendation: jobData.jobs,
+          }),
+        },
+      );
 
       setLoading(false);
     } catch (error) {
@@ -73,53 +72,36 @@ function JobMatching() {
       <Sidebar />
 
       <div className="flex-1 p-8">
-
-        <h1 className="text-4xl font-bold mb-8">
-          AI Job Matching
-        </h1>
+        <h1 className="text-4xl font-bold mb-8">AI Job Matching</h1>
 
         {/* Upload Section */}
         <div className="bg-slate-900 p-6 rounded-xl mb-8">
-
-          <h2 className="text-2xl font-semibold mb-4">
-            Upload Resume
-          </h2>
+          <h2 className="text-2xl font-semibold mb-4">Upload Resume</h2>
 
           <div className="flex items-center gap-4 flex-wrap">
-
             <label className="inline-flex items-center px-4 py-2 bg-blue-600 rounded-md cursor-pointer hover:bg-blue-700 transition">
               📄 Choose File
               <input
                 type="file"
                 accept=".pdf"
                 className="hidden"
-                onChange={(e) =>
-                  setFile(e.target.files[0])
-                }
+                onChange={(e) => setFile(e.target.files[0])}
               />
             </label>
 
-            {file && (
-              <span className="text-green-400">
-                ✓ {file.name}
-              </span>
-            )}
+            {file && <span className="text-green-400">✓ {file.name}</span>}
 
             <button
               onClick={handleAnalyze}
               className="bg-green-600 px-4 py-2 rounded-md hover:bg-green-700 transition"
             >
-              {loading
-                ? "Matching..."
-                : "Find AI Job Matches"}
+              {loading ? "Matching..." : "Find AI Job Matches"}
             </button>
-
           </div>
         </div>
 
         {/* AI Job Results */}
         <div className="bg-slate-900 p-6 rounded-xl">
-
           <h2 className="text-2xl font-semibold mb-4 text-blue-400">
             AI Recommended Jobs
           </h2>
@@ -138,13 +120,10 @@ function JobMatching() {
             </div>
           ) : (
             <p className="text-gray-400">
-              Upload a resume to receive AI-powered
-              job recommendations.
+              Upload a resume to receive AI-powered job recommendations.
             </p>
           )}
-
         </div>
-
       </div>
     </div>
   );

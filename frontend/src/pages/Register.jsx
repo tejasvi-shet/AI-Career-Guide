@@ -25,8 +25,8 @@ function Register() {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:8000/register",
-        formData
+        "https://ai-career-guide-backend-weg0.onrender.com/register",
+        formData,
       );
 
       setMessage(response.data.message);
@@ -86,11 +86,7 @@ function Register() {
           </button>
         </form>
 
-        {message && (
-          <p className="text-center mt-4 text-white">
-            {message}
-          </p>
-        )}
+        {message && <p className="text-center mt-4 text-white">{message}</p>}
 
         <p className="text-center mt-6 text-gray-400">
           Already have an account?{" "}

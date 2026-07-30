@@ -16,7 +16,7 @@ function InterviewGenerator() {
       setLoading(true);
 
       const response = await fetch(
-        "http://127.0.0.1:8000/generate-interview",
+        "https://ai-career-guide-backend-weg0.onrender.com/generate-interview",
         {
           method: "POST",
           headers: {
@@ -25,7 +25,7 @@ function InterviewGenerator() {
           body: JSON.stringify({
             role: role,
           }),
-        }
+        },
       );
 
       const data = await response.json();
@@ -50,9 +50,7 @@ function InterviewGenerator() {
 
         {/* Role Selection */}
         <div className="bg-slate-900 p-6 rounded-xl mb-8">
-          <h2 className="text-2xl font-semibold mb-4">
-            Select Interview Role
-          </h2>
+          <h2 className="text-2xl font-semibold mb-4">Select Interview Role</h2>
 
           <select
             value={role}
@@ -60,18 +58,10 @@ function InterviewGenerator() {
             className="bg-slate-800 p-3 rounded text-white w-full md:w-80 mb-4"
           >
             <option value="">Choose Role</option>
-            <option value="AI Engineer">
-              AI Engineer
-            </option>
-            <option value="Data Analyst">
-              Data Analyst
-            </option>
-            <option value="Frontend Developer">
-              Frontend Developer
-            </option>
-            <option value="Backend Developer">
-              Backend Developer
-            </option>
+            <option value="AI Engineer">AI Engineer</option>
+            <option value="Data Analyst">Data Analyst</option>
+            <option value="Frontend Developer">Frontend Developer</option>
+            <option value="Backend Developer">Backend Developer</option>
           </select>
 
           <br />
@@ -80,25 +70,18 @@ function InterviewGenerator() {
             onClick={handleGenerate}
             className="bg-blue-600 px-6 py-2 rounded hover:bg-blue-700"
           >
-            {loading
-              ? "Generating..."
-              : "Generate Questions"}
+            {loading ? "Generating..." : "Generate Questions"}
           </button>
         </div>
 
         {/* Questions Section */}
         <div className="bg-slate-900 p-6 rounded-xl">
-          <h2 className="text-2xl font-semibold mb-4">
-            Generated Questions
-          </h2>
+          <h2 className="text-2xl font-semibold mb-4">Generated Questions</h2>
 
           {questions.length > 0 ? (
             <ul className="space-y-4">
               {questions.map((question, index) => (
-                <li
-                  key={index}
-                  className="bg-slate-800 p-4 rounded-lg"
-                >
+                <li key={index} className="bg-slate-800 p-4 rounded-lg">
                   {index + 1}. {question}
                 </li>
               ))}

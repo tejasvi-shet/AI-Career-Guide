@@ -248,7 +248,7 @@ uvicorn app.main:app --reload
 Backend runs on
 
 ```text
-http://127.0.0.1:8000
+https://ai-career-guide-backend-weg0.onrender.com
 ```
 
 ---
