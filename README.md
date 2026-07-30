@@ -1,70 +1,90 @@
 # AI Career Guide 🚀
 
-An AI-powered career guidance platform that helps users analyze resumes, identify skill gaps, get career recommendations, generate interview questions, and find matching job roles.
+An AI-powered career guidance platform that helps users analyze resumes, identify skill gaps, receive AI-powered career recommendations, generate interview questions, and match resumes with suitable job roles.
 
 ---
 
-## 📌 Features
+# 📌 Features
 
-### ✅ Resume Analyzer
+## 📄 Resume Analyzer
 
 - Upload PDF resumes
-- Extract skills automatically
+- Automatically extract technical skills
 - Calculate resume match score
-- Identify missing skills
-- Generate AI-based resume feedback
-- Provide learning recommendations
+- Detect missing skills
+- Generate AI-powered resume feedback
+- Recommend learning resources
 
-### ✅ Career Recommendation
+---
 
-- Suggest suitable career paths based on user skills
-- Personalized recommendations using AI
+## 🎯 Career Recommendation
 
-### ✅ Skill Gap Analysis
+- Personalized career suggestions
+- AI-based recommendations according to user skills
+- Suitable career path matching
 
-Compare user skills with target job roles and display:
+---
+
+## 📊 Skill Gap Analysis
+
+Compare candidate skills with target job roles and display:
 
 - Required Skills
 - Missing Skills
+- Match Score
 - Gap Percentage
 
-### ✅ Learning Roadmap
+---
 
-- Suggest learning resources for missing skills
-- Help users improve their profiles
+## 📚 Learning Roadmap
 
-### ✅ Interview Generator
+- Suggest learning resources
+- Improve missing technical skills
+- Personalized upskilling suggestions
 
-- Generate interview questions based on target roles
-- Prepare users for technical interviews
+---
 
-### ✅ Job Matching
+## 💼 Job Matching
 
-- Match user resumes with job roles
+- Match resumes with suitable job roles
 - Display compatibility score
 
-### ✅ Analysis History
+---
 
-- Store previous resume analyses
+## 🎤 Interview Question Generator
+
+- Generate interview questions
+- Role-specific technical questions
+- Beginner to intermediate level
+
+---
+
+## 📜 Analysis History
+
+- Save previous resume analyses
 - View historical records
 
-### ✅ Analytics Dashboard
+---
+
+## 📈 Analytics Dashboard
 
 View:
 
-- Total Analyses
+- Total Resume Analyses
 - Average Match Score
-- Top Role
-- Top Skill
+- Top Skills
+- Most Selected Role
 - Recent Analyses
 
-### ✅ Power BI Dashboard
+---
 
-Interactive dashboard for visualizing:
+## 📊 Power BI Dashboard
+
+Interactive Power BI dashboard including:
 
 - Resume Count by Role
 - Role Distribution
-- Average Match Score by Role
+- Average Match Score
 - Skills Analysis
 - Missing Skills Analysis
 - Recent Analyses
@@ -73,31 +93,36 @@ Interactive dashboard for visualizing:
 
 # 🛠 Tech Stack
 
-### Frontend
+## Frontend
 
 - React.js
 - Tailwind CSS
 - Recharts
 
-### Backend
+## Backend
 
 - FastAPI
 - Python
 
-### Database
+## Database
 
-- MongoDB
+- MongoDB Atlas
 
-### Data Visualization
+## AI
+
+- Groq API
+- Llama 3.3 70B Versatile
+
+## Data Visualization
 
 - Power BI
 
-### Deployment
+## DevOps
 
 - Docker
-- Microsoft Azure
+- Docker Compose
 
-### Tools
+## Tools
 
 - Git
 - GitHub
@@ -113,16 +138,20 @@ AI-Project/
 ├── backend/
 │   ├── app/
 │   ├── routes/
-│   └── database/
-
+│   ├── database/
+│   ├── Dockerfile
+│   └── requirements.txt
+│
 ├── frontend/
 │   ├── src/
 │   ├── pages/
-│   └── components/
-
+│   ├── components/
+│   ├── Dockerfile
+│   └── package.json
+│
 ├── powerbi/
 │   └── AI_Resume_Analyzer_Dashboard.pbix
-
+│
 ├── screenshots/
 │   ├── home_page.png
 │   ├── dashboard_page.png
@@ -132,7 +161,9 @@ AI-Project/
 │   ├── job_matching.png
 │   ├── analytics_dashboard_page.png
 │   └── powerbi_dashboard.png
-
+│
+├── docker-compose.yml
+│
 └── README.md
 ```
 
@@ -140,49 +171,49 @@ AI-Project/
 
 # 📷 Screenshots
 
-## Home Page
+## 🏠 Home Page
 
 ![Home Page](screenshots/home_page.png)
 
 ---
 
-## Dashboard Page
+## 📊 Dashboard
 
-![Dashboard Page](screenshots/dashboard_page.png)
+![Dashboard](screenshots/dashboard_page.png)
 
 ---
 
-## Resume Analyzer
+## 📄 Resume Analyzer
 
 ![Resume Analyzer](screenshots/resume_analyzer.png)
 
 ---
 
-## Career Recommendation
+## 🎯 Career Recommendation
 
 ![Career Recommendation](screenshots/career_recommendation.png)
 
 ---
 
-## Skill Gap Analysis
+## 📈 Skill Gap Analysis
 
-![Skill Gap Analysis](screenshots/skill_gap.png)
+![Skill Gap](screenshots/skill_gap.png)
 
 ---
 
-## Job Matching
+## 💼 Job Matching
 
 ![Job Matching](screenshots/job_matching.png)
 
 ---
 
-## Analytics Dashboard
+## 📊 Analytics Dashboard
 
 ![Analytics Dashboard](screenshots/analytics_dashboard_page.png)
 
 ---
 
-## Power BI Dashboard
+## 📈 Power BI Dashboard
 
 ![Power BI Dashboard](screenshots/powerbi_dashboard.png)
 
@@ -200,7 +231,7 @@ cd AI-Project
 
 ---
 
-## Backend Setup
+## Backend
 
 ```bash
 cd backend
@@ -214,7 +245,7 @@ pip install -r requirements.txt
 uvicorn app.main:app --reload
 ```
 
-Backend runs on:
+Backend runs on
 
 ```text
 http://127.0.0.1:8000
@@ -222,7 +253,7 @@ http://127.0.0.1:8000
 
 ---
 
-## Frontend Setup
+## Frontend
 
 ```bash
 cd frontend
@@ -232,7 +263,7 @@ npm install
 npm run dev
 ```
 
-Frontend runs on:
+Frontend runs on
 
 ```text
 http://localhost:5173
@@ -240,13 +271,35 @@ http://localhost:5173
 
 ---
 
+# 🐳 Docker
+
+Build containers
+
+```bash
+docker compose build
+```
+
+Run containers
+
+```bash
+docker compose up
+```
+
+Stop containers
+
+```bash
+docker compose down
+```
+
+---
+
 # 📊 Power BI Dashboard
 
-The project includes a Power BI dashboard that provides insights into:
+The project includes an interactive Power BI dashboard that provides insights into:
 
 - Resume Analysis Trends
-- Role Distribution
 - Average Match Score
+- Role Distribution
 - Top Skills
 - Missing Skills
 - Recent Analyses
@@ -259,36 +312,33 @@ powerbi/AI_Resume_Analyzer_Dashboard.pbix
 
 ---
 
-# 🐳 Docker Deployment
+# ☁️ Deployment
 
-The application can be containerized using Docker for easy deployment and scalability.
+The application has been containerized using Docker and is ready for deployment on cloud platforms.
 
----
+Supported deployment platforms:
 
-# ☁️ Azure Deployment
+- Docker Compose
+- Render
+- Microsoft Azure (Deployment Ready)
+- MongoDB Atlas
 
-The project can be deployed on Microsoft Azure using:
-
-- Azure App Service
-- Azure Container Registry
-- Azure Blob Storage
-- Azure Cosmos DB / MongoDB Atlas
+> Note: Dockerization has been completed. Azure deployment depends on the permissions and policies of the Azure subscription being used.
 
 ---
 
-# 👩‍💻 Author
+# 👨‍💻 Author
 
 **Tejasvi Shet**
 
-Final Year Computer Science Student
+Final Year Computer Engineering Student
 
-Interested in:
+GitHub: https://github.com/tejasvi-shet
 
-- Artificial Intelligence
-- Machine Learning
-- Data Analytics
-- Full Stack Development
+LinkedIn: https://linkedin.com/in/tejasvi-shet
 
 ---
 
-⭐ If you like this project, give it a star on GitHub!
+# 📄 License
+
+This project is developed for educational and portfolio purposes.
